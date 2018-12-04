@@ -17,6 +17,6 @@ describe 'User' do
       expect(page).to have_link("trelora_consult_app")
     end
     click_link "trelora_consult_app"
-    expect(current_path).to eq("https://github.com/Autumn-Martin/trelora_consult_app")
+    expect(current_path).to eq("/Autumn-Martin/trelora_consult_app")
   end
 end
