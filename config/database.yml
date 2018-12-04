@@ -80,4 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: brownfield_development
+  database: brownfield_production
+  username: brownfield_of_dreams
+  password: <%= ENV['BROWNFIELD_DATABASE_PASSWORD'] %>
+  localhost: ENV['DATABASE_URL']
