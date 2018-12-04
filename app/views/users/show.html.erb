@@ -13,7 +13,7 @@
   
   <section>
     <h1>Github Repositories</h1>
-      <% @facade.repos.each do |repo| %>
+      <% @facade.repos[0..4].each do |repo| %>
         <ul class="repo">
           <li class="name"><%= repo.name %></li>
           <li class="link"><%= repo.link %></li>
