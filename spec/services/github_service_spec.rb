@@ -9,7 +9,6 @@ describe GithubService do
 
   it 'gets data' do 
     service = GithubService.new 
-
     github_data = service.get_repos
 
     expect(github_data).to be_a(Array)
