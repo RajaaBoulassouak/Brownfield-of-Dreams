@@ -9,10 +9,21 @@ class UserDashboardFacade
       Repo.new(repo_data)
     end
   end
+
+  def followers
+    followers_data.map do |follower_data|
+      binding.pry
+      Follower.new(follower_data)
+    end
+  end
   
   private
   def result
     @result ||= github_service.get_repos
+  end
+
+  def followers_data
+    @followers ||= github_service.get_followers
   end
   
   def github_service
