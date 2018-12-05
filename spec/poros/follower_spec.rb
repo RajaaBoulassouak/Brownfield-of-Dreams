@@ -15,7 +15,7 @@ describe Follower do
 
     follower = Follower.new(attributes)
 
-    expect(follower.name).to eq("trelora_consult_app")
-    expect(follower.link).to eq("https://github.com/Autumn-Martin/trelora_consult_app")
+    expect(follower.name).to eq("Jimmy")
+    expect(follower.link).to eq("https://github.com/RajaaBoulassouak")
   end
 end
