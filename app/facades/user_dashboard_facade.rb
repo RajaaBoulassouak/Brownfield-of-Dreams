@@ -12,7 +12,6 @@ class UserDashboardFacade
 
   def followers
     followers_data.map do |follower_data|
-      binding.pry
       Follower.new(follower_data)
     end
   end
