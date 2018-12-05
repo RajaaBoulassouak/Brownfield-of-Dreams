@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'User' do
-  it 'user can sign in' do
-    user = create(:user, token: "#{ENV['hb_github_token']}")
+describe 'User visits /dashboard' do
+  it 'shows GitHub section on user dashboard'  do
+    user = create(:user, token: ENV['hb_github_token'])
     
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -22,7 +22,7 @@ describe 'User' do
   end
 
   xit 'shows the correct repos for the logged in user in a multiple user environment' do
-    user = create(:user, token: "Rajaa's token ")
+    user = create(:user, token: ENV["Rajaa's token "])
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard' 
