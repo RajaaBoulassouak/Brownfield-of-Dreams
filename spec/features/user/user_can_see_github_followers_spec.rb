@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'User visits /dashboard' do
   describe 'and sees Followers section under GitHub section in dashboard' do
     it 'displays user followers' do
-      user = create(:user, token: ENV['hb_github_token'])
+      user = create(:user, token: ENV['GITHUB_TOKEN'])
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit '/dashboard'
