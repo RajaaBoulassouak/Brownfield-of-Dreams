@@ -17,4 +17,13 @@ describe UserDashboardFacade do
     expect(result.repos.first).to be_a(Repo)
     expect(result.repos.last).to be_a(Repo)
   end 
+
+  it 'has followers' do 
+    current_user = create(:user, token: ENV['hb_github_token'])
+    result = UserDashboardFacade.new(current_user)
+    
+    expect(result.followers).to be_a(Array)
+    expect(result.followers.first).to be_a(Follower)
+    expect(result.followers.last).to be_a(Follower)
+  end 
 end
