@@ -1,15 +1,17 @@
 require 'rails_helper'
 
-describe 'User' do
-  it 'user can sign in' do
+feature 'User can see a list of 5 of their Github repositories' do
+  scenario 'with the name of each Repo linking to the repo on Github' do
     user = create(:user)
+    github_token = GithubToken.create(token: ENV['GITHUB_TOKEN'], user_id: user.id)
     
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard'
 
-    expect(current_path).to eq(dashboard_path)
-    expect(page).to have_content("Github Repositories")
+    expect(current_path).to eq('/dashboard')
+    expect(page).to have_content("Github")
+     expect(page).to have_content("Repositories")
     expect(page).to have_css(".repo", count: 5)
     
     within(first(".repo")) do 
@@ -20,3 +22,16 @@ describe 'User' do
     expect(current_path).to eq("/Autumn-Martin/trelora_consult_app")
   end
 end
+
+feature 'User can not see a list of 5 of their Github repositories' do
+  scenario 'if they do not have their github token saved in the databae' do
+    user = create(:user)
+    
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit '/dashboard'
+
+    expect(current_path).to eq(dashboard_path)
+    expect(page).to_not have_content("Github")
+  end 
+end 

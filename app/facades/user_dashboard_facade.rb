@@ -1,10 +1,11 @@
 class UserDashboardFacade
   
-  def initialize()
+  def initialize(user)
+    @github_token = user.github_token.token
   end
   
   def repos
-    result[0..4].map do |repo_data|
+    result.map do |repo_data|
       Repo.new(repo_data)
     end
   end
@@ -15,6 +16,6 @@ class UserDashboardFacade
   end
   
   def github_service
-    GithubService.new
+    GithubService.new(@github_token)
   end
 end

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
-    @facade = UserDashboardFacade.new
+    unless current_user.github_token == nil
+      @facade = UserDashboardFacade.new(current_user)
+    end
   end
   
   def new
