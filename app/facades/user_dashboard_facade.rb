@@ -5,7 +5,7 @@ class UserDashboardFacade
   end
   
   def repos
-    result[0..4].map do |repo_data|
+    result.map do |repo_data|
       Repo.new(repo_data)
     end
   end
