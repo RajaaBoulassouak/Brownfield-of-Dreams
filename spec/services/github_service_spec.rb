@@ -8,9 +8,9 @@ describe GithubService do
     expect(service).to be_a(GithubService)
   end
 
-  it 'gets data' do 
+  it 'gets repo data' do 
     user = create(:user, token: ENV['GITHUB_TOKEN'])
-    service = GithubService.new(user)
+    service = GithubService.new(user.token)
     github_data = service.get_repos
 
     expect(github_data).to be_a(Array)
@@ -18,9 +18,9 @@ describe GithubService do
     # expect(github_data.first[:name]).to eq("trelora_consult_app")
   end 
 
-  it 'gets data' do 
+  it 'gets follower data' do 
     user = create(:user, token: ENV['GITHUB_TOKEN'])
-    service = GithubService.new(user)
+    service = GithubService.new(user.token)
     github_data = service.get_followers
 
     expect(github_data).to be_a(Array)

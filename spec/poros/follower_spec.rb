@@ -10,13 +10,13 @@ describe Follower do
 
   it "has attributes" do
     attributes = { 
-                  login: "andrewtobin",
-                  url: "https://api.github.com/users/andrewetobin"
+                  login: "andrewetobin",
+                  html_url: "/andrewetobin"
                  }
 
     follower = Follower.new(attributes)
 
-    expect(follower.name).to eq("andrewtobin")
-    expect(follower.url).to eq("https://api.github.com/users/andrewetobin")
+    expect(follower.name).to eq("andrewetobin")
+    expect(follower.url).to eq("/andrewetobin")
   end
 end
