@@ -2,30 +2,18 @@ require 'rails_helper'
 
 describe GithubService do 
   it 'exists' do
-    user = create(:user, token: ENV['GITHUB_TOKEN'])
-    service = GithubService.new(user)
+    service = GithubService.new(ENV['GITHUB_TOKEN'])
 
     expect(service).to be_a(GithubService)
   end
 
-  it 'gets repo data' do 
-    user = create(:user, token: ENV['GITHUB_TOKEN'])
-    service = GithubService.new(user.token)
-    github_data = service.get_repos
+  it 'gets repos data' do 
+    service = GithubService.new(ENV['GITHUB_TOKEN'])
+    repos_data = service.get_repos
 
-    expect(github_data).to be_a(Array)
-    expect(github_data.count).to eq(5)
-    # expect(github_data.first[:name]).to eq("trelora_consult_app")
-  end 
-
-  it 'gets follower data' do 
-    user = create(:user, token: ENV['GITHUB_TOKEN'])
-    service = GithubService.new(user.token)
-    github_data = service.get_followers
-
-    expect(github_data).to be_a(Array)
-    expect(github_data[0][:login]).to be_a(String)
-    expect(github_data[0][:id]).to be_a(Integer)
-    expect(github_data[0][:type]).to eq("User")
+    expect(repos_data).to be_a(Array)
+    expect(repos_data.count).to eq(5)
+    expect(repos_data.first).to be_a(Hash)
+    expect(repos_data.first[:name]).to eq("trelora_consult_app")
   end 
 end

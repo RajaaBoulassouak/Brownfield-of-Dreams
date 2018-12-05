@@ -11,32 +11,15 @@
     <h1>Bookmarked Segments</h1>
   </section>
   
-  <% unless current_user.token.nil? %>
+  <% unless current_user.github_token == nil %>
     <section>
-      <h1>Github Repositories</h1>
+      <h1>Github</h1>
+      <p>Repositories</p>
         <% @facade.repos.each do |repo| %>
           <ul class="repo">
             <li class="name"><%= link_to repo.name, repo.link %></li>
           </ul>
         <% end %>
     </section>
-
-    <section>
-      <h1>Followers</h1>
-        <% @facade.followers.each do |follower| %>
-          <ul class="followers">
-            <li class="follower-name"><%= link_to follower.name, follower.url %> </li>
-          </ul>
-        <% end %>
-    </section>
-
-    <section>
-      <h1>Following</h1>
-        <% @facade.following.each do |user| %>
-          <ul class="following">
-            <li class="following-name"><%= link_to user.name, user.url %> </li>
-          </ul>
-        <% end %>
-    </section>
-  <% end%>
+  <% end %>
 </section>

@@ -1,7 +1,7 @@
 class UserDashboardFacade
   
   def initialize(user)
-    @user = user
+    @github_token = user.github_token.token
   end
   
   def repos
@@ -36,6 +36,6 @@ class UserDashboardFacade
   end
   
   def github_service
-    GithubService.new(@user.token)
+    GithubService.new(@github_token)
   end
 end
