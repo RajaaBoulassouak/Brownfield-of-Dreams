@@ -20,7 +20,7 @@
           </ul>
         <% end %>
     </section>
-    
+
     <section>
       <h1>Followers</h1>
         <% @facade.followers.each do |follower| %>
@@ -32,7 +32,7 @@
 
     <section>
       <h1>Followers</h1>
-        <% @facade.followed_users.each do |user| %>
+        <% @facade.following.each do |user| %>
           <ul class="following">
             <li class="following-name"><%= link_to user.name, user.url %> </li>
           </ul>

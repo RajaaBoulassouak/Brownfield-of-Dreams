@@ -22,7 +22,7 @@ describe 'User visits /dashboard' do
   end
 
   xit 'shows the correct repos for the logged in user in a multiple user environment' do
-    user = create(:user, token: ENV["Rajaa's token "])
+    user = create(:user, token: ENV["Rajaa's token"])
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard' 
