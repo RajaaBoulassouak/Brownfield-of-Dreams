@@ -16,9 +16,9 @@ describe 'User visits /dashboard' do
       within(first(".followers")) do
         expect(page).to have_css(".follower-name")
         expect(page).to have_link("andrewetobin")
+        click_link "andrewetobin"
+        expect(current_path).to eq("/andrewetobin")
       end
-      click_link "andrewetobin"
-      expect(current_path).to eq("/users/andrewetobin")
     end
   end
 end
