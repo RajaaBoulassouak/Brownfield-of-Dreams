@@ -12,14 +12,21 @@
   </section>
   
   <% unless current_user.token.nil? %>
-  <section>
-    <h1>Github Repositories</h1>
-      <% @facade.repos.each do |repo| %>
-        <ul class="repo">
-          <li class="name"><%= link_to repo.name, repo.link %></li>
-        </ul>
-      <% end %>
-  </section>
+    <section>
+      <h1>Github Repositories</h1>
+        <% @facade.repos.each do |repo| %>
+          <ul class="repo">
+            <li class="name"><%= link_to repo.name, repo.link %></li>
+          </ul>
+        <% end %>
+    </section>
+    <section>
+      <h1>Followers</h1>
+        <% @facade.followers.each do |follower| %>
+          <ul class="followers">
+            <li class="follower-name"><%= link_to follower.name, follower.url %> </li>
+          </ul>
+        <% end %>
+    </section>
   <% end%>
-  
 </section>
