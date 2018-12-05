@@ -13,10 +13,16 @@
   
   <section>
     <h1>Github</h1>
-    <p>Repositories</p>
-      <% @facade.repos.each do |repo| %>
-        <ul class="repo">
-          <li class="name"><%= link_to repo.name, repo.link %></li>
+      <p>Repositories</p>
+        <% @facade.repos.each do |repo| %>
+          <ul class="repo">
+            <li class="name"><%= link_to repo.name, repo.link %></li>
+          </ul>
+        <% end %>
+      <p>Followers</p>
+      <% @facade.followers.each do |follower| %>
+        <ul class="follower">
+          <li class="name"><%= link_to follower.name, follower.link %></li>
         </ul>
       <% end %>
   </section>
