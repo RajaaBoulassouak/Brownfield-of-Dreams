@@ -6,6 +6,10 @@ RSpec.describe User, type: :model do
     it {should validate_presence_of(:first_name)}
     it {should validate_presence_of(:password)}
   end
+  
+  describe 'Relationships' do 
+    it { should have_one :github_token}
+  end
 
   describe 'roles' do
     it 'can be created as default user' do
