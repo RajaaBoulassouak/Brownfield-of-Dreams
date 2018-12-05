@@ -11,6 +11,7 @@
     <h1>Bookmarked Segments</h1>
   </section>
   
+  <% unless current_user.token.nil? %>
   <section>
     <h1>Github Repositories</h1>
       <% @facade.repos.each do |repo| %>
@@ -19,4 +20,6 @@
         </ul>
       <% end %>
   </section>
+  <% end%>
+  
 </section>
