@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe GithubService do 
   it 'exists' do
-    user = create(:user, token: ENV['hb_github_token'])
+    user = create(:user, token: ENV['GITHUB_TOKEN'])
     service = GithubService.new(user)
 
     expect(service).to be_a(GithubService)
   end
 
   it 'gets data' do 
-    user = create(:user, token: ENV['hb_github_token'])
+    user = create(:user, token: ENV['GITHUB_TOKEN'])
     service = GithubService.new(user)
     github_data = service.get_repos
 
@@ -19,7 +19,7 @@ describe GithubService do
   end 
 
   it 'gets data' do 
-    user = create(:user, token: ENV['hb_github_token'])
+    user = create(:user, token: ENV['GITHUB_TOKEN'])
     service = GithubService.new(user)
     github_data = service.get_followers
 

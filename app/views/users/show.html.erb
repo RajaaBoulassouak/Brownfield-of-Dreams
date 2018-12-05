@@ -31,7 +31,7 @@
     </section>
 
     <section>
-      <h1>Followers</h1>
+      <h1>Following</h1>
         <% @facade.following.each do |user| %>
           <ul class="following">
             <li class="following-name"><%= link_to user.name, user.url %> </li>

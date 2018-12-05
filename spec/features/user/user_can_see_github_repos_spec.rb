@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'User visits /dashboard' do
   it 'shows GitHub section on user dashboard'  do
-    user = create(:user, token: ENV['hb_github_token'])
+    user = create(:user, token: ENV['GITHUB_TOKEN'])
     
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 

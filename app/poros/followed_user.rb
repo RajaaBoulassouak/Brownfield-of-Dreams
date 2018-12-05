@@ -6,5 +6,4 @@ class FollowedUser
     @name = user_data[:login]
     @url = user_data[:html_url]
   end
-
 end
