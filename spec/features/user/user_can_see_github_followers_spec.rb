@@ -13,10 +13,9 @@ feature 'User can see a list of all their Github followers' do
     
     within(first(".follower")) do 
       expect(page).to have_css(".name")
-      # expect(page).to have_link()
+      expect(page).to have_link("andrewetobin")
     end
-  
-    # click_link ""
-    # expect(current_path).to eq("")
+    click_link "andrewetobin"
+     expect(current_path).to eq('/andrewetobin')
   end
 end

@@ -9,7 +9,7 @@ describe Follower do
   end
 
   it "has attributes" do
-    attributes = { name: "Jimmy",
+    attributes = { login: "Jimmy",
                    html_url: "https://github.com/RajaaBoulassouak"
                  }
 
