@@ -2,13 +2,15 @@ require 'rails_helper'
 
 describe UserDashboardFacade do 
   it 'exists' do 
-    facade = UserDashboardFacade.new
+    current_user = create(:user)
+    facade = UserDashboardFacade.new(current_user)
     
     expect(facade).to be_a(UserDashboardFacade)
   end
   
   it 'has repos' do 
-    result = UserDashboardFacade.new
+    current_user = create(:user)
+    result = UserDashboardFacade.new(current_user)
     
     expect(result.repos.count).to eq(5)
     expect(result.repos).to be_a(Array)
