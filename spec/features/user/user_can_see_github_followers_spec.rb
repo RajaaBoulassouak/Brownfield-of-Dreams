@@ -6,7 +6,6 @@ describe 'User visits /dashboard' do
       user = create(:user, token: ENV['hb_github_token'])
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       # As a logged in user
-
       visit '/dashboard'
       # When I visit /dashboard
       expect(current_path).to eq(dashboard_path)
@@ -17,8 +16,6 @@ describe 'User visits /dashboard' do
       # And under that section I should see another section titled "Followers"
       expect(page).to have_link(" ")
       # And I should see list of all followers with their handles linking to their Github profile
-
-
     end
   end
 end
