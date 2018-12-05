@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'User' do
   it 'user can sign in' do
     user = create(:user)
+    github_token = GithubToken.create(token: ENV['GITHUB_TOKEN'], user_id: user.id)
     
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -20,3 +21,16 @@ describe 'User' do
     expect(current_path).to eq("/Autumn-Martin/trelora_consult_app")
   end
 end
+
+describe 'User' do
+  it 'user can sign in' do
+    user = create(:user)
+    
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit '/dashboard'
+
+    expect(current_path).to eq(dashboard_path)
+    expect(page).to_not have_content("Github Repositories")
+  end 
+end 
