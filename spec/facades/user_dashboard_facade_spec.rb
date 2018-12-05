@@ -3,7 +3,7 @@ require 'rails_helper'
 describe UserDashboardFacade do 
   it 'exists' do 
     user = create(:user)
-    github_token = GithubToken.create(token: ENV['GITHUB_TOKEN'], user_id: user.id)
+    github_token = GithubToken.create(token: ENV['USER_GITHUB_TOKEN_1'], user_id: user.id)
     
     facade = UserDashboardFacade.new(user)
     
@@ -12,7 +12,7 @@ describe UserDashboardFacade do
   
   it 'has repos' do 
     user = create(:user)
-    github_token = GithubToken.create(token: ENV['GITHUB_TOKEN'], user_id: user.id)
+    github_token = GithubToken.create(token: ENV['USER_GITHUB_TOKEN_1'], user_id: user.id)
   
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
   
