@@ -28,7 +28,7 @@
         <% end %>
       <p>Following</p>
         <% @facade.followed_users.each do |followed_user| %>
-          <ul class="following">
+          <ul class="followed_user">
             <li class="name"><%= link_to followed_user.name, followed_user.link %></li>
           </ul>
         <% end %>
