@@ -16,6 +16,12 @@ class UserDashboardFacade
     end
   end
   
+  def followed_users
+    followed_users_result.map do |user_data|
+      FollowedUser.new(user_data)
+    end 
+  end
+  
   private
   def repos_result
     @repos_result ||= github_service.get_repos
@@ -23,6 +29,10 @@ class UserDashboardFacade
 
   def followers_result
     @followers_result ||= github_service.get_followers
+  end
+  
+  def followed_users_result 
+    @followed_users_result ||= github_service.get_followed_users
   end
   
   def github_service

@@ -25,4 +25,13 @@ describe GithubService do
     expect(followers_data.first).to be_a(Hash)
     expect(followers_data.first[:login]).to eq("andrewetobin")
   end
+  
+  it 'gets followed users data' do 
+    service = GithubService.new(ENV['USER_GITHUB_TOKEN_2'])
+    followed_users = service.get_followed_users
+
+    expect(followed_users).to be_a(Array)
+    expect(followed_users.first).to be_a(Hash)
+    expect(followed_users.first[:login]).to eq("MacInnes")
+  end
 end
