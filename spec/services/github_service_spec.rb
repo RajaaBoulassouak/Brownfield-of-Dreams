@@ -16,4 +16,13 @@ describe GithubService do
     expect(repos_data.first).to be_a(Hash)
     expect(repos_data.first[:name]).to eq("trelora_consult_app")
   end
+
+  it 'gets followers data' do 
+    service = GithubService.new(ENV['USER_GITHUB_TOKEN_1'])
+    followers_data = service.get_followers
+
+    expect(followers_data).to be_a(Array)
+    expect(followers_data.first).to be_a(Hash)
+    expect(followers_data.first[:login]).to eq("andrewetobin")
+  end
 end
