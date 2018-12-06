@@ -21,9 +21,15 @@
           </ul>
         <% end %>
       <p>Followers</p>
-        <% @facade.followers.each do |repo| %>
+        <% @facade.followers.each do |follower| %>
           <ul class="follower">
-            <li class="name"><%= link_to repo.name, repo.link %></li>
+            <li class="name"><%= link_to follower.name, follower.link %></li>
+          </ul>
+        <% end %>
+      <p>Following</p>
+        <% @facade.followed_users.each do |followed_user| %>
+          <ul class="following">
+            <li class="name"><%= link_to followed_user.name, followed_user.link %></li>
           </ul>
         <% end %>
     </section>
