@@ -36,4 +36,17 @@ describe UserDashboardFacade do
     expect(result.followers.first).to be_a(Follower)
     expect(result.followers.last).to be_a(Follower)
   end 
+  
+  it 'has followed users' do 
+    user = create(:user)
+    github_token = GithubToken.create(token: ENV['USER_GITHUB_TOKEN_2'], user_id: user.id)
+  
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  
+    result = UserDashboardFacade.new(user)
+  
+    expect(result.followed_users).to be_a(Array)
+    expect(result.followed_users.first).to be_a(FollowedUser)
+    expect(result.followed_users.last).to be_a(FollowedUser)
+  end 
 end
