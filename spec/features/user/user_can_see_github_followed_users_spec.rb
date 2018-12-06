@@ -13,11 +13,11 @@ feature 'User can see a list of their Github followed users' do
     expect(page).to have_content("Github")
      expect(page).to have_content("Following")
     
-    within(first(".followed")) do 
+    within(first(".followed_user")) do 
       expect(page).to have_css(".name")
       expect(page).to have_link("MacInnes")
+      click_link "MacInnes"
     end
-    click_link "MacInnes"
     expect(current_path).to eq("/MacInnes")
   end
 end
