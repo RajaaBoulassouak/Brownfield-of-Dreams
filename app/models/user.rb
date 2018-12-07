@@ -8,4 +8,8 @@ class User < ApplicationRecord
   validates_presence_of :first_name
   enum role: [:default, :admin]
   has_secure_password
+
+  def self.create_with_omniauth(info)
+    create(name: info['name'])
+  end
 end
