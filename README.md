@@ -1,3 +1,6 @@
+[![Gem Version](https://badge.fury.io/rb/omniauth-github.svg)](https://badge.fury.io/rb/omniauth-github)
+
+
 # Brownfield Of Dreams
 
 This is the base repo for a brownfield project used at Turing for Backend Mod 3.
