@@ -11,9 +11,7 @@
     <h1>Bookmarked Segments</h1>
   </section>
   
-  <section>
-      <%= button_to 'Connect to Github', "https://github.com/login/oauth/authorizec?lient_id=#{ENV['GITHUB_CLIENT_ID']}", class: "btn btn-primary mb1 bg-teal" %>
-  </section>
+  <%= link_to 'Connect to Github', "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}" %>
   
   <% unless current_user.github_token == nil %>
     <section>
