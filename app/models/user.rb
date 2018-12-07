@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_secure_password
 
   def self.find_or_create_from_auth(auth)
-    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+    find_or_create_by(email: auth.info.email) do |user|
       user.email = auth.info.email
       user.save
     end

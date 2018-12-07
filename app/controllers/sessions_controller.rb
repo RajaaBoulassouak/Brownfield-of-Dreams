@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
 
   def create
     if params[:provider].present?
-      @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
-      set_session_user_id
+      user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+      session[:user_id] = user.id
+      flash[:notice] = "Logged in as #{user.first_name}"
+      redirect_to dashboard_path
     else
       hand_roll_login
     end
