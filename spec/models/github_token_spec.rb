@@ -5,7 +5,7 @@ RSpec.describe GithubToken, type: :model do
     it {should belong_to :user}
   end 
 
-  xit "creates or updates itself from an oauth hash" do    
+  it "creates or updates itself from an oauth hash" do    
     auth = {
       "provider" => "GitHub_Mock",
       "uid" => "12345678910",
@@ -13,9 +13,10 @@ RSpec.describe GithubToken, type: :model do
         "token" => "abcdefg12345"
       }
     }
+    User.create(first_name: 'Grace', last_name: 'Hopper', email: 'email@email.com', password: 'wonderwoman')
+    user = User.find(1)
     
-    token = GithubToken.find_or_create_from_auth(auth)
-    user = User.create(first_name: 'Grace', last_name: 'Hopper', email: 'email@email.com', password: 'wonderwoman')
+    new_token = user.github_token.find_or_create_from_auth(auth)
 
     expect(new_token.gh_user_id).to eq("12345678910")
     expect(new_token.user_id).to eq(user.id)
