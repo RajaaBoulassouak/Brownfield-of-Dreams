@@ -15,16 +15,6 @@ ActiveRecord::Schema.define(version: 2018_12_08_231713) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "followings", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "followed_user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["followed_user_id"], name: "index_followings_on_followed_user_id"
-    t.index ["user_id", "followed_user_id"], name: "index_followings_on_user_id_and_followed_user_id", unique: true
-    t.index ["user_id"], name: "index_followings_on_user_id"
-  end
-
   create_table "friends", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "friended_user_id"

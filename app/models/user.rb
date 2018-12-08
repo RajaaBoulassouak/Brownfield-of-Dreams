@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :videos, through: :user_videos
   has_one :github_token
 
-  has_many :friends, 
+  has_many :friends
   has_many :friended_users, through: :friends
 
   validates :email, uniqueness: true, presence: true
