@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :github_token do
     token { 1 }
-    user { nil }
+    user { create(:user) }
   end
 end
