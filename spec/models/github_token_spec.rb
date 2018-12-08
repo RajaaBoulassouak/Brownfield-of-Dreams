@@ -13,6 +13,7 @@ RSpec.describe GithubToken, type: :model do
         "token" => "abcdefg12345"
       }
     }
+
     User.create(first_name: 'Grace', last_name: 'Hopper', email: 'email@email.com', password: 'wonderwoman')
     user = User.find(1)
     
