@@ -5,10 +5,11 @@ Rails.application.routes.draw do
       resources :videos, only:[:show]
     end
   end
-
+  
   root 'welcome#index'
   get 'tags/:tag', to: 'welcome#index', as: :tag
   get '/register', to: 'users#new'
+  get '/auth/github/callback', to: 'github/sessions#create'
 
   namespace :admin do
     get "/dashboard", to: "dashboard#show"

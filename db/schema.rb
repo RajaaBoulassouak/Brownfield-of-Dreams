@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_190333) do
   enable_extension "plpgsql"
 
   create_table "github_tokens", force: :cascade do |t|
+    t.integer "gh_user_id"
     t.string "token"
     t.bigint "user_id"
     t.datetime "created_at", null: false
