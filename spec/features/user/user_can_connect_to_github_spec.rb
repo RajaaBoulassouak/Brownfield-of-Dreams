@@ -7,13 +7,13 @@ feature 'GitHub OmniAuth' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
     stub_omniauth
-    # visit '/dashboard'
+    visit '/'
 
     # expect(page).to have_button('Connect to Github')
     
     # click_button 'Connect to Github'
 
-    visit '/auth/github'
+    # visit '/auth/github'
  
 
     visit '/auth/github/callback'
