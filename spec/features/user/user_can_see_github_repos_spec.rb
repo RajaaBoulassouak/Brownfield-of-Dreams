@@ -55,7 +55,7 @@ feature 'User can not see a list of 5 of their Github repositories' do
     visit '/dashboard'
 
     expect(current_path).to eq(dashboard_path)
-    save_and_open_page
+
     expect(page).to_not have_content("Repositories")
   end 
 end 
