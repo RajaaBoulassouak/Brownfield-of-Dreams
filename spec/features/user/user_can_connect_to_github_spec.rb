@@ -10,9 +10,9 @@ feature 'GitHub OmniAuth' do
 
     visit '/dashboard'
  
-    click_link 'Connect to Github'
+    click_button 'Connect to Github'
 
-    # visit '/auth/github/callback'
+    visit '/auth/github/callback'
 
     # expect(page).to_not have_button('Connect to Github')
 
