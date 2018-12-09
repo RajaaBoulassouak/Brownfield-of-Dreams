@@ -1,0 +1,8 @@
+  Links show up next to followers that have accounts in our system.
+  Links show up next to followings that have accounts in our database.
+  Links do not show up next to followers or followings if they are not in our database.
+  There's a section on the dashboard that shows all of the users that I have friended
+  
+  Edge Case: Make sure this fails gracefully. If you open up a POST route to create a friendship, 
+  be sure to catch the scenario where someone sends an invalid user id. 
+  Send a flash message alerting them of the error.
