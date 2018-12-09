@@ -11,7 +11,7 @@
     <h1>Bookmarked Segments</h1>
   </section>
   
-  <%= link_to 'Connect to Github', "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}" %>
+  <%= button_to 'Connect to Github', "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}", class: "btn btn-primary mb1 bg-teal"  %>
   
   <% unless current_user.github_token == nil %>
     <section>
@@ -26,6 +26,7 @@
         <% @facade.followers.each do |follower| %>
           <ul class="follower">
             <li class="name"><%= link_to follower.name, follower.link %></li>
+            <%=link_to 'Add as Friend', friendships_path(friend_id: user), method: :post %>
           </ul>
         <% end %>
       <p>Following</p>

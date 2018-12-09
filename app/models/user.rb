@@ -3,8 +3,11 @@ class User < ApplicationRecord
   has_many :videos, through: :user_videos
   has_one :github_token
 
-  has_many :friends
-  has_many :friended_users, through: :friends
+  has_many :friendships
+  has_many :friends, through: :friendships
+
+  # has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
+  # has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   validates :email, uniqueness: true, presence: true
   validates_presence_of :password
@@ -12,14 +15,11 @@ class User < ApplicationRecord
   enum role: [:default, :admin]
   has_secure_password
 
-  def add_friend
+  def self.current
+    Thread.current[:user]
   end
 
-  # def self.current
-  #   Thread.current[:user]
-  # end
-
-  # def self.current=(user)
-  #   Thread.current[:user] = user
-  # end
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
 end
