@@ -14,12 +14,14 @@ RSpec.describe GithubToken, type: :model do
       }
     }
 
-    user = User.create(first_name: 'Grace', last_name: 'Hopper', email: 'email@email.com', password: 'wonderwoman')
+    current_user = User.create(first_name: 'Grace', last_name: 'Hopper', email: 'email@email.com', password: 'wonderwoman')
     
-    new_token = GithubToken.find_or_create_by(auth, user)
+    new_token = GithubToken.find_or_create_by(auth, current_user)
 
     expect(new_token.gh_user_id).to eq("12345678910")
-    expect(new_token.user_id).to eq(user.id)
+    expect(new_token.user_id).to eq(current_user.id)
     expect(new_token.token).to eq("abcdefg12345")
+    expect(current_user.github_token).to eq(new_token)
+    expect(current_user.github_token.token).to eq("abcdefg12345")
   end
 end
