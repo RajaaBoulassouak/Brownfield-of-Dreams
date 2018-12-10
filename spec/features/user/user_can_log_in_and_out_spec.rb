@@ -5,14 +5,12 @@ describe 'User' do
     user = create(:user)
 
     visit '/'
-
     click_on "Sign In"
 
     expect(current_path).to eq(login_path)
 
     fill_in 'session[email]', with: user.email
     fill_in 'session[password]', with: user.password
-
     click_on 'Log In'
 
     expect(current_path).to eq(dashboard_path)
@@ -23,14 +21,11 @@ describe 'User' do
 
   it 'can log out', :js do
     user = create(:user)
-
+    
     visit login_path
-
     fill_in'session[email]', with: user.email
     fill_in'session[password]', with: user.password
-
     click_on 'Log In'
-
     click_on 'Profile'
 
     expect(current_path).to eq(dashboard_path)
@@ -48,10 +43,8 @@ describe 'User' do
     fake_password = "123"
 
     visit login_path
-
     fill_in'session[email]', with: fake_email
     fill_in'session[password]', with: fake_password
-
     click_on 'Log In'
 
     expect(page).to have_content("Looks like your email or password is invalid")
