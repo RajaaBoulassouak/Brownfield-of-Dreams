@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User can see a list of 5 of their Github repositories' do
   scenario 'with the name of each Repo linking to the repo on Github' do
     user = create(:user)
-    gh_user = GhUser.create(token: ENV['USER_GITHUB_TOKEN_1'], user_id: user.id)
+    GhUser.create(token: ENV['USER_GITHUB_TOKEN_1'], user_id: user.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard'
@@ -26,7 +26,7 @@ end
 feature 'A different user can see a list of 5 of their Github repositories' do
   scenario 'with the name of each Repo linking to the repo on Github' do
     user = create(:user)
-    gh_user = GhUser.create(token: ENV['USER_GITHUB_TOKEN_2'], user_id: user.id)
+    GhUser.create(token: ENV['USER_GITHUB_TOKEN_2'], user_id: user.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard'
@@ -36,6 +36,7 @@ feature 'A different user can see a list of 5 of their Github repositories' do
     expect(page).to have_content('Repositories')
     expect(page).to have_css('.repo', count: 5)
     within(first('.repo')) do 
+      expect(page).to have_css('.name')
       expect(page).to have_link('night_writer')
     end
     
@@ -45,8 +46,8 @@ feature 'A different user can see a list of 5 of their Github repositories' do
   end
 end
 
-feature 'User can not see a list of 5 of their Github repositories' do
-  scenario 'if they have not connected to github' do
+feature 'User can not see a Github section' do
+  scenario 'if they have not connected to Github' do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
