@@ -116,9 +116,3 @@ m3_tutorial.videos.create!({
 })
 
 admin = User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
-user_1 = User.create!(first_name: 'Friendly', last_name: 'Frienderson', email: 'friendly@friends.com', password: 'sofriendly')
-GithubToken.create!(gh_user_id: '12345', token: 'abc123', user_id: user_1.id)
-user_2 = User.create!(first_name: 'Franny', last_name: 'McFrienderson', email: 'sofriendly@friendly.com', password: 'iamfriendly')
-GithubToken.create!(gh_user_id: '56789', token: 'xyz789', user_id: user_2.id)
-user_3 = User.create!(first_name: 'Lonely', last_name: 'Lonelyface', email: 'lonely@lonely.com', password: 'solonely')
-user_4 = User.create!(first_name: 'Lester', last_name: 'McLonelyton', email: 'solonely@lonely.com', password: 'iamlonely')
