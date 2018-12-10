@@ -29,8 +29,8 @@
           <ul class="follower">
             <li class="name">
               <%= link_to follower.name, follower.link %> 
-              <% unless GhUser.find_by(gh_id: follower.gh_id) == nil %>
-                <%= link_to "Add as Friend", friendships_path(gh_user_id: follower.gh_id) %>
+              <% if gh_user?(follower) %>
+                <%= button_to "Add as Friend", friendships_path(gh_user_id: follower.gh_id), class: "btn btn-primary mb1 bg-teal" %>
               <% end %>
             </li>
           </ul>
@@ -40,8 +40,8 @@
           <ul class="followed_user">
             <li class="name">
               <%= link_to followed_user.name, followed_user.link %> 
-              <% unless GhUser.find_by(gh_id: followed_user.gh_id) == nil %>
-                <%= link_to "Add as Friend", friendships_path(gh_user_id: followed_user.gh_id) %>
+              <% if gh_user?(followed_user) %>
+                <%= button_to "Add as Friend", friendships_path(gh_user_id: followed_user.gh_id), class: "btn btn-secondary mb1 bg-teal" %>
               <% end %>
             </li>
           </ul>
