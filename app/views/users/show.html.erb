@@ -41,12 +41,10 @@
         <% end %>
       <p>Friends</p>
         <% current_user.friendships.each do |friendship| %>
-      <ul>
-          <li>
-            <%= friendship.username %>
-            (<%= link_to "remove", friendship, :method => :delete %>)
-          </li>
-      </ul>
+        <ul>
+          <li><%= friendship.username %> </li>
+            <%= link_to "remove", friendship, :method => :delete %>
+        </ul>
         <% end %>
     </section>
   <% end %>
