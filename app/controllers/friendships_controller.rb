@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
 
   def index
-    redirect_to back
+    redirect_to dashboard_path
   end
   
 

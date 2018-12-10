@@ -28,9 +28,9 @@
         <% @facade.followers.each do |follower| %>
           <ul class="follower">
             <li class="name"><%= link_to follower.name, follower.link %></li>
-            <% if github_connected?(follower) %>
+            <%# if github_connected?(follower) %>
             <%= link_to 'Add as Friend', friendships_path(friend_id: current_user), method: :post %>
-            <% end %>
+            <%# end %>
           </ul>
         <% end %>
       <p>Following</p>
@@ -39,11 +39,14 @@
             <li class="name"><%= link_to followed_user.name, followed_user.link %></li>
           </ul>
         <% end %>
-      <p>My Friends</p>
-        <% @facade.followed_users.each do |followed_user| %>
-          <ul class="followed_user">
-            <li class="name"><%= link_to followed_user.name, followed_user.link %></li>
-          </ul>
+      <p>Friends</p>
+        <% current_user.friendships.each do |friendship| %>
+      <ul>
+          <li>
+            <%= friendship.username %>
+            (<%= link_to "remove", friendship, :method => :delete %>)
+          </li>
+      </ul>
         <% end %>
     </section>
   <% end %>
