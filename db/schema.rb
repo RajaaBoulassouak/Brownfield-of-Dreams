@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_190333) do
+ActiveRecord::Schema.define(version: 2018_12_08_162816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "github_tokens", force: :cascade do |t|
-    t.integer "gh_user_id"
+    t.string "gh_user_id"
     t.string "token"
     t.bigint "user_id"
     t.datetime "created_at", null: false

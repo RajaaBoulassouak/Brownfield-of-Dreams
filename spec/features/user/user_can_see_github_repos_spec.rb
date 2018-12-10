@@ -4,7 +4,6 @@ feature 'User can see a list of 5 of their Github repositories' do
   scenario 'with the name of each Repo linking to the repo on Github' do
     user = create(:user)
     github_token = GithubToken.create(token: ENV['USER_GITHUB_TOKEN_1'], user_id: user.id)
-    
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard'
@@ -27,7 +26,6 @@ feature 'Different user can see a list of 5 of their Github repositories' do
   scenario 'with the name of each Repo linking to the repo on Github' do
     user = create(:user)
     github_token = GithubToken.create(token: ENV['USER_GITHUB_TOKEN_2'], user_id: user.id)
-    
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard'
@@ -49,13 +47,11 @@ end
 feature 'User can not see a list of 5 of their Github repositories' do
   scenario 'if they do not have their github token saved in the databae' do
     user = create(:user)
-    
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard'
 
     expect(current_path).to eq(dashboard_path)
-    save_and_open_page
     expect(page).to_not have_content("Repositories")
   end 
 end 
