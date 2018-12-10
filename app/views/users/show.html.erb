@@ -14,7 +14,7 @@
   <% if current_user.github_token.nil? %>
     <%= button_to 'Connect to Github', '/auth/github', class: "btn btn-primary mb1 bg-teal" %>
   <% end %>
-    
+
   <% unless current_user.github_token == nil %>
     <section>
       <h1>Github</h1>
@@ -28,7 +28,9 @@
         <% @facade.followers.each do |follower| %>
           <ul class="follower">
             <li class="name"><%= link_to follower.name, follower.link %></li>
-            <%=link_to 'Add as Friend', friendships_path(friend_id: user), method: :post %>
+            <% if github_connected?(follower) %>
+            <%= link_to 'Add as Friend', friendships_path(friend_id: current_user), method: :post %>
+            <% end %>
           </ul>
         <% end %>
       <p>Following</p>
