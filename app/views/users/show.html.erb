@@ -13,7 +13,7 @@
   
   <%= link_to 'Connect to Github', "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}" %>
   
-  <% unless current_user.github_token == nil %>
+  <% unless current_user.gh_user == nil %>
     <section>
       <h1>Github</h1>
       <p>Repositories</p>
@@ -25,15 +25,37 @@
       <p>Followers</p>
         <% @facade.followers.each do |follower| %>
           <ul class="follower">
-            <li class="name"><%= link_to follower.name, follower.link %></li>
+            <li class="name">
+              <%= link_to follower.name, follower.link %> 
+              <% unless GhUser.find_by(gh_id: follower.gh_id) == nil %>
+                <%= link_to "Add as Friend", friendships_path(gh_user_id: follower.gh_id) %>
+              <% end %>
+            </li>
           </ul>
         <% end %>
       <p>Following</p>
         <% @facade.followed_users.each do |followed_user| %>
           <ul class="followed_user">
-            <li class="name"><%= link_to followed_user.name, followed_user.link %></li>
+            <li class="name">
+              <%= link_to followed_user.name, followed_user.link %> 
+              <% unless GhUser.find_by(gh_id: followed_user.gh_id) == nil %>
+                <%= link_to "Add as Friend", friendships_path(gh_user_id: followed_user.gh_id) %>
+              <% end %>
+            </li>
           </ul>
         <% end %>
+        <p>Friends</p>
+          <% current_user.gh_user.friendships.each do |friendship| %>
+            <ul class="friend">
+              <li class="name"><%= link_to friendship.friend.name, friendship.friend.link %></li>
+            </ul>
+          <% end %>
+        <p>Friended by</p>
+          <% current_user.gh_user.inverse_friends.each do |gh_user| %>
+            <ul class="inverse_friend">
+              <li class="name"><%= link_to gh_user.name, gh_user.link %></li>
+            </ul>
+          <% end %>
     </section>
   <% end %>
 </section>
