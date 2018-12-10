@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :user_videos
   has_many :videos, through: :user_videos
-  has_one :github_token
+  has_one  :gh_user
 
   validates :email, uniqueness: true, presence: true
   validates_presence_of :password
