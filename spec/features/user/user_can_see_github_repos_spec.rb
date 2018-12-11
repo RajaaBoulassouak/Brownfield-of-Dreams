@@ -53,7 +53,7 @@ feature 'User can not see a Github section' do
 
     visit '/dashboard'
 
-    expect(current_path).to eq(dashboard_path)
+    expect(current_path).to eq('/dashboard')
     expect(page).to have_button('Connect to Github')
     expect(page).to_not have_content('Repositories')
   end 
