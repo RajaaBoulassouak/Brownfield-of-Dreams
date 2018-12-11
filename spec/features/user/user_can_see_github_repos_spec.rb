@@ -16,10 +16,6 @@ feature 'User can see a list of 5 of their Github repositories' do
       expect(page).to have_css('.name')
       expect(page).to have_link('trelora_consult_app')
     end
-    
-    click_link 'trelora_consult_app'
-    
-    expect(current_path).to eq('/Autumn-Martin/trelora_consult_app')
   end
 end
 
@@ -39,15 +35,11 @@ feature 'A different user can see a list of 5 of their Github repositories' do
       expect(page).to have_css('.name')
       expect(page).to have_link('night_writer')
     end
-    
-    click_link 'night_writer'
-    
-    expect(current_path).to eq('/Autumn-Martin/night_writer')
   end
 end
 
 feature 'User can not see a Github section' do
-  scenario 'if they have not connected to Github' do
+  scenario "if they have not connected to Github" do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
