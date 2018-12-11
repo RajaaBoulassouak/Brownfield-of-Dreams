@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'GitHub OmniAuth' do
-  scenario 'user can authorize through Github' do
+  it 'user can authorize through Github' do
     stub_omniauth
+    user = create(:user) 
 
-    user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
     visit '/dashboard'
@@ -17,25 +17,25 @@ feature 'GitHub OmniAuth' do
     expect(page).to have_content('Following')
     expect(page).to have_content('Followers')
   end
-end
-
-def stub_omniauth
-  auth = {
-    'provider'    => 'GitHub_Mock',
-    'uid'         => '37811063',
-    'info'        => {
-                      'nickname' => 'hbellows'
-                     },
-    'extra'       => {
-                      'raw_info' => {
-                                     'html_url'   => 'https://github.com/HBellows'
-                                     }
-                     },
-    'credentials' => 
-                     { 
-                      'token' => ENV['USER_GITHUB_TOKEN_2']
-                     }
-   }
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(auth)
+  
+  def stub_omniauth
+    auth = {
+      'uid'         => '37811063',
+      'info'        => {
+        'nickname' => 'hbellows'
+      },
+      'extra'       => {
+        'raw_info' => {
+          'html_url'   => 'https://github.com/HBellows'
+        }
+      },
+      'credentials' => 
+      { 
+        'token' => ENV['USER_GITHUB_TOKEN_2']
+      }
+    }
+    
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(auth, id)
+  end
 end
