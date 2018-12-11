@@ -14,8 +14,6 @@ feature 'User can see a list of the users they follow on github' do
     within(first('.followed_user')) do 
       expect(page).to have_css('.name')
       expect(page).to have_link('MacInnes')
-      click_link 'MacInnes'
     end
-    expect(current_path).to eq('/MacInnes')
   end
 end
