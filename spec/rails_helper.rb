@@ -2,7 +2,6 @@ require 'spec_helper'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'vcr'
@@ -20,6 +19,7 @@ end
 ActiveRecord::Migration.maintain_test_schema!
 
 Capybara.default_driver = :selenium
+
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
@@ -30,8 +30,6 @@ Capybara.configure do |config|
   config.default_max_wait_time = 5
 end
 
-SimpleCov.start "rails"
-
 Shoulda::Matchers.configure do |config|
     config.integrate do |with|
     with.test_framework :rspec
@@ -41,41 +39,34 @@ end
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
   config.include FactoryBot::Syntax::Methods
-
   config.use_transactional_fixtures = true
-
   config.infer_spec_type_from_file_location!
-
   config.filter_rails_from_backtrace!
 end
 
-
 def stub_omniauth
-  OmniAuth.config.test_mode = true
-
   omniauth_hash = {
-                    'provider' => 'github',
-                    'uid' => '8312280',
-                    'info' =>
-                      {
-                        'name' => 'Harper Bellows',
-                        'email' => 'harper.bellows@gmail.com',
-                        'nickname' => 'hbellows'
-                      },
-                    'credentials' =>
-                      {
-                        'token' => ENV['USER_GITHUB_TOKEN_2']
-                      },
-                    'extra' =>
-                      {
-                        'raw_info' =>
-                          {
-                            'public_repos' => '46'
-                          }
-                      }
-                  }
-
+                    'provider'   => 'github',
+                    'uid'        => '8312280',
+                    'info'       =>
+                                    {
+                                     'name'     => 'Harper Bellows',
+                                     'email'    => 'harper.bellows@gmail.com',
+                                     'nickname' => 'hbellows'
+                                    },
+                    'credentials'=>
+                                    {
+                                     'token' => ENV['USER_GITHUB_TOKEN_2']
+                                    },
+                    'extra'      =>
+                                    {
+                                     'raw_info' =>
+                                                   {
+                                                    'public_repos' => '46'
+                                                   }
+                                    }
+                }
+  OmniAuth.config.test_mode = true
   OmniAuth.config.add_mock(:github, omniauth_hash)
 end
