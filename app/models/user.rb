@@ -9,7 +9,11 @@ class User < ApplicationRecord
   enum role: [:default, :admin]
   has_secure_password
 
-  def bookmarked_videos
-    Tutorial.includes(videos: :user_videos).where(videos: { user_videos: { id: id } })
+  def bookmarked_tutorials
+    Tutorial.includes(videos: :user_videos)
+    .references(videos: :user_videos)
+    .where('user_videos.user_id = ?', id)
+    .group('tutorials.id, videos.id, user_videos.id')
+    .order('videos.position ASC')
   end
 end
