@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'GitHub OmniAuth' do
   it 'user can authorize through Github' do
     stub_omniauth
-    user = create(:user) 
+    user = create(:user, gh_id: 37811063) 
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
@@ -36,6 +36,6 @@ feature 'GitHub OmniAuth' do
     }
     
     OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(auth, id)
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(auth)
   end
 end
