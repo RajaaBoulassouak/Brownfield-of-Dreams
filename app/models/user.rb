@@ -12,7 +12,7 @@ class User < ApplicationRecord
   def bookmarked_tutorials
     Tutorial.includes(videos: :user_videos)
     .references(videos: :user_videos)
-    .where('user_videos.user_id = ?', id)
+    .where(videos: {user_videos:{user_id: id}})
     .group('tutorials.id, videos.id, user_videos.id')
     .order('videos.position ASC')
   end
