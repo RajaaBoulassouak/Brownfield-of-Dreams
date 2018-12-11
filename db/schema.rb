@@ -10,18 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_162816) do
+ActiveRecord::Schema.define(version: 2018_12_08_230438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "github_tokens", force: :cascade do |t|
-    t.string "gh_user_id"
+  create_table "friendships", force: :cascade do |t|
+    t.integer "gh_user_id"
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gh_users", force: :cascade do |t|
+    t.integer "gh_id"
+    t.string "name"
+    t.string "link"
     t.string "token"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_github_tokens_on_user_id"
+    t.index ["user_id"], name: "index_gh_users_on_user_id"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -89,7 +98,7 @@ ActiveRecord::Schema.define(version: 2018_12_08_162816) do
     t.index ["tutorial_id"], name: "index_videos_on_tutorial_id"
   end
 
-  add_foreign_key "github_tokens", "users"
+  add_foreign_key "gh_users", "users"
   add_foreign_key "user_videos", "users"
   add_foreign_key "user_videos", "videos"
 end
