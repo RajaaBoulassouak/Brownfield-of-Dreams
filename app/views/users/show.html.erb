@@ -10,9 +10,9 @@
   <section>
     <h1>Bookmarked Segments</h1>
     <% current_user.bookmarked_tutorials.each do |tutorial| %>
-      <%= tutorial.description %>
+    <ul><%= tutorial.description %></ul>
         <% tutorial.videos.each do |video| %>
-        <%= link_to video.title %>
+        <li><%= link_to video.title %></li>
         <% end%>
     <% end%>
   </section>
