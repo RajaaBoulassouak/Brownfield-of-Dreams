@@ -45,28 +45,28 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 end
 
-def stub_omniauth
-  omniauth_hash = {
-                    'provider'   => 'github',
-                    'uid'        => '8312280',
-                    'info'       =>
-                                    {
-                                     'name'     => 'Harper Bellows',
-                                     'email'    => 'harper.bellows@gmail.com',
-                                     'nickname' => 'hbellows'
-                                    },
-                    'credentials'=>
-                                    {
-                                     'token' => ENV['USER_GITHUB_TOKEN_2']
-                                    },
-                    'extra'      =>
-                                    {
-                                     'raw_info' =>
-                                                   {
-                                                    'public_repos' => '46'
-                                                   }
-                                    }
-                }
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.add_mock(:github, omniauth_hash)
-end
+# def stub_omniauth
+#   omniauth_hash = {
+#                     'provider'   => 'github',
+#                     'uid'        => '8312280',
+#                     'info'       =>
+#                                     {
+#                                      'name'     => 'Harper Bellows',
+#                                      'email'    => 'harper.bellows@gmail.com',
+#                                      'nickname' => 'hbellows'
+#                                     },
+#                     'credentials'=>
+#                                     {
+#                                      'token' => ENV['USER_GITHUB_TOKEN_2']
+#                                     },
+#                     'extra'      =>
+#                                     {
+#                                      'raw_info' =>
+#                                                    {
+#                                                     'public_repos' => '46'
+#                                                    }
+#                                     }
+#                 }
+#   OmniAuth.config.test_mode = true
+#   OmniAuth.config.add_mock(:github, omniauth_hash)
+# end
