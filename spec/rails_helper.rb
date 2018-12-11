@@ -18,8 +18,6 @@ end
 
 ActiveRecord::Migration.maintain_test_schema!
 
-# Capybara.default_driver = :selenium
-
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
