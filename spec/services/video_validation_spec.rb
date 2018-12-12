@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe VideoValidation do
   it 'validates video position attribute and updates if nil' do
-    tutorial= create(:tutorial)
+    tutorial = create(:tutorial)
     valid_video = create(:video, tutorial_id: tutorial.id)
     invalid_video = create(:video, tutorial_id: tutorial.id)
     invalid_video.update_attributes(position: nil)
