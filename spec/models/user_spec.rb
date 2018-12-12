@@ -29,7 +29,19 @@ RSpec.describe User, type: :model do
 
   describe 'Class Methods' do
     it 'can retrieve user\'s bookmarked tutorials and group them by tutorial name then sort them by video position' do
-      
+      user_1 = User.create(first_name: 'Grace', last_name: 'Hopper', email: 'og@coder.com', password: 'hamburger1')
+      user_2 = User.create(first_name: 'Ada', last_name: 'Lovelace', email: 'ada@coder.com', password: 'hamburger2')
+      tutorial_1 = Tutorial.create(title: 'Generic Title 1', description: 'Generic Description 1', thumbnail: 'lazy url 1', playlist_id: 1)
+      tutorial_2 = Tutorial.create(title: 'Generic Title 2', description: 'Generic Description 2', thumbnail: 'lazy url 2', playlist_id: 1)
+      video_1 = Video.create(title: 'Awesome Title 1', description: 'Awesome Description 1', video_id: 'abc123', thumbnail: 'generic_url_1', tutorial_id: tutorial_1.id)
+      video_2 = Video.create(title: 'Awesome Title 2', description: 'Awesome Description 2', video_id: 'xyz789', thumbnail: 'generic_url_2', tutorial_id: tutorial_2.id)
+      bookmark_1 = Bookmark.create(user_id: user_1.id, video_id: video_1.id)
+      bookmark_1 = Bookmark.create(user_id: user_1.id, video_id: video_2.id)
+
+      expect(user_1.bookmarks.count).to eq(2)
+      expect(user_1.videos.count).to eq(2)
+      expect(user_1.bookmarked_tutorials[0].title).to eq(tutorial_1.title)
+      expect(user_1.bookmarked_tutorials[1].title).to eq(tutorial_2.title)
     end
   end
 end
