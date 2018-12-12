@@ -1,3 +1,5 @@
+require './app/services/video_validation_rake'
+
 namespace :video do
   desc 'Ensures the position attribute on Videos is not nil'
   task position_validation: :environment do
@@ -9,10 +11,8 @@ namespace :video do
     log.info "Task started at #{start_time}"
     
     Video.find_each do |video|
-      max_pos = video.tutorial.videos.maximum(:position)
-      if video.position.nil?
-        video.update_attributes(position: max_pos + 1)
-      end
+      validation = VideoValidation.new(video).validate
+ 
       completed += 1
       print("\r#{completed} of #{video_count} Videos Validated") 
       log.info "#{completed} of #{video_count} - #{video.title}"
