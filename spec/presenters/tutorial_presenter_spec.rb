@@ -23,6 +23,14 @@ describe TutorialFacade do
       expect(presenter.current_video.id).to eq(video1.id)
     end
 
+    it 'displays a message if no videos currently exist for the tutorial' do
+      tutorial = create(:tutorial)
+
+      presenter = TutorialFacade.new(tutorial)
+
+      expect(presenter.current_video.title).to eq('Sorry, no videos have been added for this tutorial')
+    end
+
     context "#next_video" do
       it 'can find the next video' do
         tutorial = create(:tutorial)
