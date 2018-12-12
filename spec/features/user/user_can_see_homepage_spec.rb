@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Visitor' do
-  describe 'on the home page' do
-    it 'can see a list of tutorials that are only not classroom content' do
+describe 'User' do
+  describe 'on the home page can see a list of all tutorials' do
+    it 'including the classroom content ones' do
       tutorial1 = create(:tutorial)
       tutorial2 = create(:tutorial)
       tutorial3 = create(:tutorial, classroom: true)
@@ -12,10 +12,14 @@ describe 'Visitor' do
       video3 = create(:video, tutorial_id: tutorial2.id)
       video4 = create(:video, tutorial_id: tutorial2.id)
       video5 = create(:video, tutorial_id: tutorial3.id)
+      
+      user = create(:user)
+      
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit root_path
 
-      expect(page).to have_css('.tutorial', count: 2)
+      expect(page).to have_css('.tutorial', count: 3)
 
       within(first('.tutorials')) do
         expect(page).to have_css('.tutorial')
