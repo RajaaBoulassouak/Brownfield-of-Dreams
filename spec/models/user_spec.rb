@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'Class Methods' do
+  describe 'Instance Methods' do
     it 'can retrieve user\'s bookmarked tutorials and group them by tutorial name then sort them by video position' do
       user_1 = User.create(first_name: 'Grace', last_name: 'Hopper', email: 'og@coder.com', password: 'hamburger1')
       user_2 = User.create(first_name: 'Ada', last_name: 'Lovelace', email: 'ada@coder.com', password: 'hamburger2')
