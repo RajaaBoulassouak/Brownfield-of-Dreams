@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
     elsif current_user
       @tutorials = Tutorial.all.paginate(:page => params[:page], :per_page => 5)
     elsif params[:tag]
-      @tutorials = Tutorial.not_classroom_content.agged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5)
+      @tutorials = Tutorial.not_classroom_content.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5)
     else
       @tutorials = Tutorial.not_classroom_content.paginate(:page => params[:page], :per_page => 5)
     end
