@@ -1,4 +1,5 @@
-require './app/services/video_validation_rake'
+require './app/services/video_validation'
+# require 'pry'
 
 namespace :video do
   desc 'Ensures the position attribute on Videos is not nil'
@@ -11,7 +12,7 @@ namespace :video do
     log.info "Task started at #{start_time}"
     
     Video.find_each do |video|
-      validation = VideoValidation.new(video).validate
+      VideoValidation.new(video).validate
  
       completed += 1
       print("\r#{completed} of #{video_count} Videos Validated") 
