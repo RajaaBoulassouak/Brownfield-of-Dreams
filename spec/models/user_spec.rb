@@ -26,4 +26,10 @@ RSpec.describe User, type: :model do
       expect(admin.admin?).to be_truthy
     end
   end
+
+  describe 'Class Methods' do
+    it 'can retrieve user\'s bookmarked tutorials and group them by tutorial name then sort them by video position' do
+      
+    end
+  end
 end
