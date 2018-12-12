@@ -121,3 +121,4 @@ user_2 = User.create!(email: "and@tob", first_name: 'And', last_name: 'Tob', pas
 
 gh_user_1 = GhUser.create!(gh_id: 39357526, name: "RajaaBoulassouak", link: "https://github.com/RajaaBoulassouak", token: ENV['USER_GITHUB_TOKEN_1'], user_id: user_1.id)
 gh_user_2 = GhUser.create!(gh_id: 37811063, name: "andrewetobin", link: "https://github.com/andrewetobin", token: ENV['USER_GITHUB_TOKEN_1'], user_id: user_2.id)
+gh_user_3 = GhUser.create!(gh_id: 37811063, name: "andrewetobin", link: "https://github.com/andrewetobin", token: ENV['USER_GITHUB_TOKEN_2'], user_id: user_2.id)
