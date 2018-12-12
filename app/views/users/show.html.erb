@@ -51,7 +51,7 @@
             <li class="name">
               <%= link_to followed_user.name, followed_user.link %> 
               <% if gh_user?(followed_user) %>
-                <%= button_to "Add as Friend", friendships_path(gh_user_id: followed_user.gh_id), class: "btn btn-secondary mb1 bg-teal" %>
+                <%= button_to "Add as Friend", "/friendships/#{followed_user.gh_id}, class: "btn btn-secondary mb1 bg-teal" %>
               <% end %>
             </li>
           </ul>
