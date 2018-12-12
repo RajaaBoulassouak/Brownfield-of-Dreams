@@ -1,12 +1,12 @@
-class UserVideosController < ApplicationController
+class BookmarksController < ApplicationController
   def new
   end
 
   def create
-    user_video = UserVideo.new(user_video_params)
-    if current_user.user_videos.find_by(video_id: user_video.video_id)
+    bookmark = Bookmark.new(bookmark_params)
+    if current_user.bookmarks.find_by(video_id: bookmark.video_id)
       flash[:error] = "Already in your bookmarks"
-    elsif user_video.save
+    elsif bookmark.save
       flash[:success] = "Bookmark added to your dashboard!"
     end
 
@@ -15,7 +15,7 @@ class UserVideosController < ApplicationController
 
   private
 
-  def user_video_params
+  def bookmark_params
     params.permit(:user_id, :video_id)
   end
 end
