@@ -9,11 +9,11 @@
   </ul>
   <section>
     <h1>Bookmarked Segments</h1>
-    <ul>
+    <ul class="bookmarks">
     <% current_user.bookmarked_tutorials.each do |tutorial| %>
-      <li><%= tutorial.description %></li>
+      <li class="tutorial-<%= tutorial.id %>"><%= tutorial.description %></li>
         <% tutorial.videos.each do |video| %>
-          <ul><%= link_to video.title %></ul>
+          <ul class="video-<%= video.id %>"><%= link_to video.title %></ul>
         <% end%>
     <% end%>
     </ul>
