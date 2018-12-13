@@ -6,7 +6,6 @@ class GhUser < ApplicationRecord
   has_many :inverse_friends, through: :inverse_friendships, source: :gh_user
   
    def self.find_or_create_from_auth(auth, id)
-   binding.pry
       where(gh_id: auth['uid']).first_or_initialize.tap do |gh_user|
          gh_user.gh_id   = auth['uid']
          gh_user.name    = auth["info"]["nickname"]
