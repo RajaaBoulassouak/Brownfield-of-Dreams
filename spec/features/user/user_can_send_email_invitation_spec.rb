@@ -10,12 +10,13 @@ describe 'User Dashboard' do
 
       visit '/dashboard'
       # And I click "Send an Invite"
-      click_on 'Send an Invite'
+      click_on('Send an Invite')
       # Then I should be on /invite
       expect(current_path).to eq('/invite')
       
       # And when I fill in "Github Handle" with <A VALID GITHUB HANDLE>
       fill_in :github_handle, with: 'andrewetobin'
+ 
       # And I click on "Send Invite"
       click_on 'Send Invite'
       # Then I should be on /dashboard
@@ -26,7 +27,7 @@ describe 'User Dashboard' do
       # Or I should see a message that says "The Github user you selected doesn't have an email 
       # address associated with their account."
     end
-    it 'user invites github user to app and displays a message to user that no email exists for github user handle' do
+    xit 'user invites github user to app and displays a message to user that no email exists for github user handle' do
       # As a registered user
       # When I visit /dashboard
       user = create(:user)
