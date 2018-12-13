@@ -14,6 +14,8 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV['YOUTUBE_API_KEY'] }
+  config.filter_sensitive_data("<GITHUB_API_KEY_1>") { ENV['USER_GITHUB_TOKEN_1'] }
+  config.filter_sensitive_data("<GITHUB_API_KEY_2>") { ENV['USER_GITHUB_TOKEN_2'] }
 end
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -44,27 +46,27 @@ RSpec.configure do |config|
 end
 
 def stub_omniauth
+  OmniAuth.config.test_mode = true
   omniauth_hash = {
                     'provider'   => 'github',
                     'uid'        => '8312280',
+                    'login'      => 'peachesamaloney',
                     'info'       =>
                                     {
-                                     'name'     => 'Harper Bellows',
-                                     'email'    => 'harper.bellows@gmail.com',
-                                     'nickname' => 'hbellows'
+                                     'name'     => 'Peaches Maloney',
+                                     'email'    => 'peaches@gmail.com',
+                                     'nickname' => 'peaches'
                                     },
+                    'extra'       =>  {
+                                       'raw_info' =>  {
+                                                       'html_url' => 'https://github.com/hbellows'
+                                                       }
+                                       },                
                     'credentials'=>
                                     {
-                                     'token' => ENV['USER_GITHUB_TOKEN_2']
-                                    },
-                    'extra'      =>
-                                    {
-                                     'raw_info' =>
-                                                   {
-                                                    'public_repos' => '46'
-                                                   }
+                                     'token' => 'abc123'
                                     }
                 }
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.add_mock(:github, omniauth_hash)
+
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(omniauth_hash)
 end
