@@ -10,12 +10,8 @@ RSpec.describe GhUser, type: :model do
             'provider'    => 'GitHub_Mock',
             'uid'         => '37811063',
             'info'        => {
-                              'nickname' => 'Harper'
-                             },
-            'extra'       => {
-                              'raw_info' => {
-                                             'html_url'   => 'https://github.com/HBellows'
-                                             }
+                              'nickname' => 'hbellows',
+                              'url'      =>  'https://github.com/hbellows'
                              },
             'credentials' => 
                              { 
@@ -27,8 +23,8 @@ RSpec.describe GhUser, type: :model do
 
     expect(current_user.gh_user).to eq(new_gh_user)
     expect(new_gh_user.gh_id).to eq(37811063)
-    expect(new_gh_user.name).to eq('Harper')
-    expect(new_gh_user.link).to eq('https://github.com/HBellows')
+    expect(new_gh_user.name).to eq('hbellows')
+    expect(new_gh_user.link).to eq('https://github.com/hbellows')
     expect(new_gh_user.user_id).to eq(current_user.id)
     expect(new_gh_user.token).to eq('abcdefg12345')
   end

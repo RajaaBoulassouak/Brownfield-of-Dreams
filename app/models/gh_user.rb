@@ -9,7 +9,7 @@ class GhUser < ApplicationRecord
       where(gh_id: auth['uid']).first_or_initialize.tap do |gh_user|
          gh_user.gh_id   = auth['uid']
          gh_user.name    = auth["info"]["nickname"]
-         gh_user.link    = auth["extra"]["raw_info"]["html_url"]
+         gh_user.link    = auth["info"]["url"]
          gh_user.user_id = id
          gh_user.token   = auth["credentials"]["token"]
          gh_user.save!
