@@ -2,11 +2,14 @@ class TutorialFacade < SimpleDelegator
   def initialize(tutorial, video_id = nil)
     super(tutorial)
     @video_id = video_id
+    @tutorial = tutorial
   end
 
   def current_video
     if @video_id
       videos.find(@video_id)
+    elsif @tutorial.videos.none?
+      @tutorial.videos.new(title: 'Sorry, no videos have been added for this tutorial')
     else
       videos.first
     end
