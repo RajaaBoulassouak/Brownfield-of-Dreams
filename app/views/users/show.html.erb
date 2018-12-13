@@ -11,6 +11,9 @@
     <% else %>
       <li>Your account has not yet been activated. Please check your email.</li>
     <% end %>
+      <li>Invite a Friend:</li>
+        <%= text_field_tag :github_handle, "Enter GitHub handle here", class: "form-control" %>
+        <%= submit_tag "Send an Invite", class: "btn btn-primary" %>
   </ul>
   <section>
     <h1>Bookmarked Segments</h1>
