@@ -2,16 +2,20 @@
   <h2> <%= current_user.first_name %>'s Dashboard </h2>
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
+  
+  <p> logged in as <% current_user.firstname %> <%= current_user.last_name %> </p>
+  
   <h3>Account Details</h3>
   <ul>
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
-    <% if current_user.status == 'active' %>
-      <li>Status: Active</li>
+    <% if current_user.status == 'activated' %>
+      <li> Status: Activated </li>
     <% else %>
-      <li>Your account has not yet been activated. Please check your email.</li>
+      Your account has not yet been activated. Please check your email.
     <% end %>
   </ul>
+  
   <section>
     <h1>Bookmarked Segments</h1>
     <ul class="bookmarks">
@@ -24,58 +28,62 @@
     </ul>
   </section>
   
+  <p>
   <% if current_user.gh_user.nil? %>
     <%= button_to 'Connect to Github', '/auth/github', class: "btn btn-primary mb1 bg-teal" %>
   <% end %>
+  </p> 
   
-  <% unless current_user.gh_user == nil %>
-    <section>
-      <h1>Github</h1>
-      <p class="repos" > Repositories
-        <% @facade.repos.each do |repo| %>
-          <ul class="repo">
-            <li class="name"><%= link_to repo.name, repo.link %></li>
-          </ul>
-        <% end %>
-      </p>
-      <p class="followers" > Followers
-        <% @facade.followers.each do |follower| %>
-          <ul class="follower">
-            <li class="name">
-              <%= link_to follower.name, follower.link %> 
-              <% if gh_user?(follower) %>
-                <%= button_to "Add as Friend", "/friendships/#{follower.gh_id}", class: "btn btn-primary mb1 bg-teal" %>
-              <% end %>
-            </li>
-          </ul>
-        <% end %>
-      </p>
-      <p class="following" > Following
-        <% @facade.followed_users.each do |followed_user| %>
-          <ul class="followed_user">
-            <li class="name">
-              <%= link_to followed_user.name, followed_user.link %> 
-              <% if gh_user?(followed_user) %>
-                <%= button_to "Add as Friend", "/friendships/#{followed_user.gh_id}", class: "btn btn-secondary mb1 bg-teal" %>
-              <% end %>
-            </li>
-          </ul>
-        <% end %>
-      </p>
-      <p class="friends" > Friends 
-        <% current_user.gh_user.friendships.each do |friendship| %>
-          <ul class="friend">
-            <li class="name"><%= link_to friendship.friend.name, friendship.friend.link %></li>
-          </ul>
-        <% end %>
-      </p>
-      <p class="firended" > Friended by
-        <% current_user.gh_user.inverse_friends.each do |gh_user| %>
-          <ul class="inverse_friend">
-            <li class="name"><%= link_to gh_user.name, gh_user.link %></li>
-          </ul>
-        <% end %>
-      </p>
-    </section>
-  <% end %>
+  <section>
+    <% unless current_user.gh_user == nil %>
+      <section>
+        <h1> Github </h1>
+        <p class="repos" > Repositories
+          <% @facade.repos.each do |repo| %>
+            <ul class="repo">
+              <li class="name"><%= link_to repo.name, repo.link %></li>
+            </ul>
+          <% end %>
+        </p>
+        <p class="followers" > Followers
+          <% @facade.followers.each do |follower| %>
+            <ul class="follower">
+              <li class="name">
+                <%= link_to follower.name, follower.link %> 
+                <% if gh_user?(follower) %>
+                  <%= button_to "Add as Friend", "/friendships/#{follower.gh_id}", class: "btn btn-primary mb1 bg-teal" %>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </p>
+        <p class="following" > Following
+          <% @facade.followed_users.each do |followed_user| %>
+            <ul class="followed_user">
+              <li class="name">
+                <%= link_to followed_user.name, followed_user.link %> 
+                <% if gh_user?(followed_user) %>
+                  <%= button_to "Add as Friend", "/friendships/#{followed_user.gh_id}", class: "btn btn-secondary mb1 bg-teal" %>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </p>
+        <p class="friends" > Friends 
+          <% current_user.gh_user.friendships.each do |friendship| %>
+            <ul class="friend">
+              <li class="name"><%= link_to friendship.friend.name, friendship.friend.link %></li>
+            </ul>
+          <% end %>
+        </p>
+        <p class="firended" > Friended by
+          <% current_user.gh_user.inverse_friends.each do |gh_user| %>
+            <ul class="inverse_friend">
+              <li class="name"><%= link_to gh_user.name, gh_user.link %></li>
+            </ul>
+          <% end %>
+        </p>
+      </section>
+    <% end %>
+  </section>
 </section>
