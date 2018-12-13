@@ -55,9 +55,13 @@ def stub_omniauth
                                     {
                                      'name'     => 'Peaches Maloney',
                                      'email'    => 'peaches@gmail.com',
-                                     'nickname' => 'peaches',
-                                     'url'   => 'https://github.com/peaches',
+                                     'nickname' => 'peaches'
                                     },
+                    'extra'       =>  {
+                                       'raw_info' =>  {
+                                                       'html_url' => 'https://github.com/hbellows'
+                                                       }
+                                       },                
                     'credentials'=>
                                     {
                                      'token' => 'abc123'

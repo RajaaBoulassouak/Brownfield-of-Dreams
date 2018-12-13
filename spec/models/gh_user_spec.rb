@@ -10,9 +10,13 @@ RSpec.describe GhUser, type: :model do
             'provider'    => 'GitHub_Mock',
             'uid'         => '37811063',
             'info'        => {
-                              'nickname' => 'hbellows',
-                              'url'      =>  'https://github.com/hbellows'
+                              'nickname' => 'hbellows'
                              },
+            'extra'       =>  {
+                              'raw_info' =>  {
+                                              'html_url' => 'https://github.com/hbellows'
+                                             }
+                              },
             'credentials' => 
                              { 
                               'token'    => 'abcdefg12345'
