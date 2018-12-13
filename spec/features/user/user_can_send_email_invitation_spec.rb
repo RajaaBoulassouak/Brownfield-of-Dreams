@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User Dashboard' do
-  describe 'user can send email invitation to github user' do
+  describe 'user can send email invitation to github member' do
     it 'uses github user handle and email to send an invitation' do
       # As a registered user
       # When I visit /dashboard
@@ -27,7 +27,7 @@ describe 'User Dashboard' do
       # Or I should see a message that says "The Github user you selected doesn't have an email 
       # address associated with their account."
     end
-    xit 'user invites github user to app and displays a message to user that no email exists for github user handle' do
+    xit 'user invites github user to app and displays a message to user that no email exists for github member handle' do
       # As a registered user
       # When I visit /dashboard
       user = create(:user)

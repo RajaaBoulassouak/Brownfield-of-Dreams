@@ -21,7 +21,7 @@ class UserDashboardFacade
       FollowedUser.new(user_data)
     end 
   end
-  
+
   private
   def repos_result
     @repos_result ||= github_service.get_repos

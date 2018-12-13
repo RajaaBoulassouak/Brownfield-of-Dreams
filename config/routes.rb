@@ -46,5 +46,6 @@ Rails.application.routes.draw do
 
   resources :bookmarks, only:[:create, :destroy]
   resources :activation, only: [:edit]
-  resources :invite, only: [:index]
+  get '/invite', to: 'invites#index'
+  get '/search', to: 'search#index'
 end
