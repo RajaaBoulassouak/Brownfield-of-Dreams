@@ -15,9 +15,10 @@ class UsersController < ApplicationController
       user.send_activation_email
       session[:user_id] = user.id
       redirect_to dashboard_path
-    else
-      flash[:error] = 'Username already exists'
-      render :new
+    # TODO: Write SAD Path test here
+    # else
+    #   flash[:error] = 'Username already exists'
+    #   render :new
     end
   end
 
