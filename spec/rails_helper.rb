@@ -14,6 +14,8 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV['YOUTUBE_API_KEY'] }
+  config.filter_sensitive_data("<GITHUB_API_KEY_1>") { ENV['GITHUB_USER_TOKEN_1'] }
+  config.filter_sensitive_data("<GITHUB_API_KEY_2>") { ENV['GITHUB_USER_TOKEN_2'] }
 end
 
 ActiveRecord::Migration.maintain_test_schema!
