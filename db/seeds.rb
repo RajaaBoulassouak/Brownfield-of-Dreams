@@ -118,7 +118,9 @@ m3_tutorial.videos.create!({
 admin  = User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
 user_1 = User.create!(email: "user@com", first_name: 'R', last_name: 'B', password:  "1")
 user_2 = User.create!(email: "and@tob", first_name: 'And', last_name: 'Tob', password:  "1")
+user_3 = User.create!(email: "you@me", first_name: 'You', last_name: 'Me', password:  "123")
+
 
 gh_user_1 = GhUser.create!(gh_id: 39357526, name: "RajaaBoulassouak", link: "https://github.com/RajaaBoulassouak", token: ENV['USER_GITHUB_TOKEN_1'], user_id: user_1.id)
 gh_user_2 = GhUser.create!(gh_id: 37811063, name: "andrewetobin", link: "https://github.com/andrewetobin", token: ENV['USER_GITHUB_TOKEN_1'], user_id: user_2.id)
-gh_user_3 = GhUser.create!(gh_id: 37811063, name: "andrewetobin", link: "https://github.com/andrewetobin", token: ENV['USER_GITHUB_TOKEN_2'], user_id: user_2.id)
+gh_user_3 = GhUser.create!(gh_id: 35637783, name: "hbellows", link: "https://github.com/hbellows", token: ENV['USER_GITHUB_TOKEN_2'], user_id: user_3.id)

@@ -44,4 +44,5 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks, only:[:create, :destroy]
+  resources :activation, only: [:edit]
 end
