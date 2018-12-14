@@ -12,13 +12,13 @@ class UserDashboardFacade
 
   def followers
     followers_result.map do |follower_data|
-      Follower.new(follower_data)
+      GithubMember.new(follower_data)
     end
   end
   
   def followed_users
     followed_users_result.map do |user_data|
-      FollowedUser.new(user_data)
+      GithubMember.new(user_data)
     end 
   end
 

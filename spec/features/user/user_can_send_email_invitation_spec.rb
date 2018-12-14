@@ -28,10 +28,11 @@ describe 'User Dashboard' do
       # Or I should see a message that says "The Github user you selected doesn't have an email 
       # address associated with their account."
     end
-    xit 'user invites github user to app and displays a message to user that no email exists for github member handle' do
+    it 'user invites github user to app and displays a message to user that no email exists for github member handle' do
       # As a registered user
       # When I visit /dashboard
       user = create(:user)
+      GhUser.create(token: ENV['USER_GITHUB_TOKEN_1'], user_id: user.id)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit '/dashboard'
@@ -47,8 +48,7 @@ describe 'User Dashboard' do
       # Then I should be on /dashboard
       expect(current_path).to eq('/dashboard')
       # And I should see a message that says "Successfully sent invite!" 
-      expect(page).to have_content("The Github user you selected doesn't have an email 
-        # address associated with their account.")
+      expect(page).to have_content("The Github user you selected doesn’t have an email address associated with their account.")
       # (if the user has an email address associated with their github account)
       # Or I should see a message that says "The Github user you selected doesn't have an email 
       # address associated with their account."
