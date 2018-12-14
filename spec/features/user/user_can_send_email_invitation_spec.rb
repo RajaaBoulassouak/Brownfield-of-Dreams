@@ -6,6 +6,7 @@ describe 'User Dashboard' do
       # As a registered user
       # When I visit /dashboard
       user = create(:user)
+      GhUser.create(token: ENV['USER_GITHUB_TOKEN_1'], user_id: user.id)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit '/dashboard'
@@ -40,7 +41,7 @@ describe 'User Dashboard' do
       expect(current_path).to eq('/invite')
       
       # And when I fill in "Github Handle" with <A VALID GITHUB HANDLE>
-      fill_in :github_handle, with: 'andrewetobin'
+      fill_in :github_handle, with: 'hbellows'
       # And I click on "Send Invite"
       click_on 'Send Invite'
       # Then I should be on /dashboard
