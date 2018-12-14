@@ -15,6 +15,10 @@ class GithubService
   def get_followed_users
     get_json("/user/following")
   end
+
+  def get_members(github_handle)
+    get_json("/users/#{github_handle}")
+  end
   
   private
   def get_json(url)

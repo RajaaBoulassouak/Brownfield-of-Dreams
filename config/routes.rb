@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get '/about', to: 'about#show'
   get '/get_started', to: 'get_started#show'
 
+
   # Is this being used?
   get '/video', to: 'video#show'
   post '/friendships/:id', to: 'friendships#create'
@@ -45,4 +46,6 @@ Rails.application.routes.draw do
 
   resources :bookmarks, only:[:create, :destroy]
   resources :activation, only: [:edit]
+  get '/invite', to: 'invites#index'
+  get '/search', to: 'search#index'
 end
