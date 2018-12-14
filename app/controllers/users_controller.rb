@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to dashboard_path
     else
-      flash[:error] = 'Username already exists'
+      flash[:error] = 'Email already exists'
       render :new
     end
   end
