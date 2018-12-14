@@ -1,2 +1,2 @@
-class ApplicationJob < ActiveJob::Base
-end
+ #TODO: class ApplicationJob < ActiveJob::Base
+# end

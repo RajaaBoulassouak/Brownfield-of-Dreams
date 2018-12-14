@@ -1,4 +1,4 @@
-# module ApplicationCable
+# TODO: module ApplicationCable
 #   class Channel < ActionCable::Channel::Base
 #   end
 # end

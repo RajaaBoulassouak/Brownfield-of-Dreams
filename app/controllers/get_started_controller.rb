@@ -1,4 +1,4 @@
-# class GetStartedController < ApplicationController
+# TODO: class GetStartedController < ApplicationController
 #   def show
 #   end
 # end
