@@ -20,6 +20,6 @@ describe GithubMember do
     expect(member.name).to eq("andrewetobin")
     expect(member.link).to eq("/andrewetobin")
     expect(member.email).to eq("andrewetobin@gmail.com")
-    expect(member.id).to eq("12345678")
+    expect(member.gh_id).to eq(12345678)
   end
 end
